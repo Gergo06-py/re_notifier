@@ -1,4 +1,4 @@
-# Version beta 0.1
+# Version beta 0.2
 
 from plyer import notification
 import time
@@ -86,7 +86,7 @@ def main():
     get_input.start()
 
     print(
-        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.1")
+        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.2")
     notification.notify("Notifier", "Elindítva!")
 
     if 0 < current_week < 6:
@@ -143,3 +143,8 @@ print("indítás...")
 if __name__ == "__main__":
     main()
 print("kilépés...")
+if confirm_exit:
+    print("nyomd meg az enter gombot a kilépéshez")
+stop_thread = True
+get_input.join()
+exit(1)
