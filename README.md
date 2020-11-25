@@ -1,4 +1,2 @@
-## This is re_notifier
-
--first commit
-- another line
+## This is the revamp of the notifier proiject.
+>This project is till under development.
