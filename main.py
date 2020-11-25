@@ -1,3 +1,5 @@
+# Version beta 0.1
+
 from plyer import notification
 import time
 import notifier_libraries
@@ -84,7 +86,7 @@ def main():
     get_input.start()
 
     print(
-        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg")
+        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.1")
     notification.notify("Notifier", "Elindítva!")
 
     if 0 < current_week < 6:
