@@ -106,7 +106,7 @@ def main():
         notified = False
         current_time = time.strftime("%H:%M").split(":")
         current_time = int(current_time[0]) * 60 + int(current_time[1])
-        while current_time <= class_start_time and not notified:
+        while current_time <= class_start_time and not notified and not this_weeks_classes[index] == "":
             current_time = time.strftime("%H:%M").split(":")
             current_time = int(current_time[0]) * 60 + int(current_time[1])
             if current_time == class_start_time:
@@ -121,7 +121,7 @@ def main():
         notified = False
         current_time = time.strftime("%H:%M").split(":")
         current_time = int(current_time[0]) * 60 + int(current_time[1])
-        while current_time <= class_end_time and not notified:
+        while current_time <= class_end_time and not notified and not this_weeks_classes[index] == "":
             current_time = time.strftime("%H:%M").split(":")
             current_time = int(current_time[0]) * 60 + int(current_time[1])
             if current_time == class_end_time:
