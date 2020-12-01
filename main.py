@@ -98,15 +98,14 @@ def main():
         exit(1)
 
     for index in range(len(this_weeks_classes)):
-        notified = False
         class_start_time = notifier_libraries.time_table[index][0].split(":")
         class_start_time = int(class_start_time[0]) * 60 + int(class_start_time[1])
         class_end_time = notifier_libraries.time_table[index][1].split(":")
         class_end_time = int(class_end_time[0]) * 60 + int(class_end_time[1])
 
+        notified = False
         current_time = time.strftime("%H:%M").split(":")
         current_time = int(current_time[0]) * 60 + int(current_time[1])
-        pause_thread = False
         while current_time <= class_start_time and not notified:
             current_time = time.strftime("%H:%M").split(":")
             current_time = int(current_time[0]) * 60 + int(current_time[1])
@@ -118,12 +117,10 @@ def main():
                 notified = True
             check_commands("break", index, this_weeks_classes, current_time)
             time.sleep(1)
-        pause_thread = True
 
         notified = False
         current_time = time.strftime("%H:%M").split(":")
         current_time = int(current_time[0]) * 60 + int(current_time[1])
-        pause_thread = False
         while current_time <= class_end_time and not notified:
             current_time = time.strftime("%H:%M").split(":")
             current_time = int(current_time[0]) * 60 + int(current_time[1])
@@ -135,7 +132,6 @@ def main():
                 notified = True
             check_commands("class", index, this_weeks_classes, current_time)
             time.sleep(1)
-        pause_thread = True
     notification.notify("Notifier", "Az óráid véget értek")
 
 
