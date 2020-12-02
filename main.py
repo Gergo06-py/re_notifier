@@ -1,4 +1,4 @@
-# Verzió: beta 0.3
+# Verzió: beta 0.4
 
 from plyer import notification
 import time
@@ -54,7 +54,7 @@ def check_commands(code, index, this_weeks_classes, current_time):
         elif inp == "!help" or inp == "!segitseg" or inp == "!segits" or inp == "!h":
             print("Parancsok:\n!ora\n!kilepes / !kilep / !exit\n!help / !segitseg / !segits / !h\n!kicsengo / "
                   "!kicsenget / !kicsengetes / !oraveg / !oravege / !ki-cs\n!becsengo / !becsenget / !becsengetes / "
-                  "!orakezdet / !orakezdete / !be-cs")
+                  "!orakezdet / !orakezdete / !be-cs\n!ver / !version / !verzio / !v\nVerzió: beta 0.4")
         elif inp == "!kicsengo" or inp == "!kicsenget" or inp == "!kicsengetes" or inp == "!oraveg" or inp == "!oravege" or inp == "!ki-cs":
             notification.notify("Notifier",
                                 str(class_end_time // 60) + ":" + str(class_end_time % 60) + "kor csengetnek ki")
@@ -70,7 +70,7 @@ def check_commands(code, index, this_weeks_classes, current_time):
                     notification.notify("Notifier", str(class_start_time // 60) + ":" + str(
                         class_start_time % 60) + "kor csengetnek be")
         elif inp == "!ver" or inp == "!version" or inp == "!verzio" or inp == "!v":
-            print("Verzió: beta 0.3")
+            print("Verzió: beta 0.4")
         
         elif inp == "":
             pass
@@ -89,7 +89,7 @@ def main():
     get_input.start()
 
     print(
-        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.3")
+        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.4")
     notification.notify("Notifier", "Elindítva!")
 
     if 0 < current_week < 6:
@@ -99,6 +99,8 @@ def main():
         notification.notify("Notifier", "Hétvégén nicsenek óráid")
         print("kilépés...")
         exit(1)
+        
+    pause_thread = False
 
     for index in range(len(this_weeks_classes)):
         class_start_time = notifier_libraries.time_table[index][0].split(":")
