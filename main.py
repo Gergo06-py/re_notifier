@@ -4,6 +4,8 @@ from plyer import notification
 import time
 import notifier_libraries
 import threading
+import git
+import imp
 
 inp = ""
 
@@ -83,6 +85,9 @@ def check_commands(code, index, this_weeks_classes, current_time):
 
 
 def main():
+    repo = git.Repo(".git")
+    repo.remotes.origin.pull("time_table")
+    imp.reload(notifier_libraries)
     global inp, get_input, stop_thread, pause_thread
     this_weeks_classes = []
     current_week = int(time.strftime("%w"))
