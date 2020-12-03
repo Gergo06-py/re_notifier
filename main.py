@@ -88,7 +88,11 @@ def main():
     # comment
     # another comment
     repo = git.Repo(".git")
+    print(repo.untracked_files)
+    current = repo.head.commit
     repo.remotes.origin.pull("time_table")
+    if not current == repo.head.commit:
+        print("updated!")
     imp.reload(notifier_libraries)
     global inp, get_input, stop_thread, pause_thread
     this_weeks_classes = []
