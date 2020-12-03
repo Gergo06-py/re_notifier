@@ -4,7 +4,6 @@
 >Thank you.<br>
 >(you can open the link in a new tab by clicking on it with the middle mouse button)
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js">
     document.getElementById('p').innerHTML = moment().format('W');
 </script>
