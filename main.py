@@ -86,6 +86,7 @@ def check_commands(code, index, this_weeks_classes, current_time):
 
 def main():
     # comment
+    # another comment
     repo = git.Repo(".git")
     repo.remotes.origin.pull("time_table")
     imp.reload(notifier_libraries)
