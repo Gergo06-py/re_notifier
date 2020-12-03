@@ -28,6 +28,7 @@ def check_update(stop, paused):
     global inp, can_check_commands, stop_check_update
     repo = git.Repo(".git")
     update = repo.remotes.origin.fetch()
+    print(update)
     if len(update) > 0:
         if str(update[0]) == "origin/time_table":
             notification.notify("Notifier", "Frissítések elérhetőek!")
@@ -39,10 +40,10 @@ def check_update(stop, paused):
                     if inp == "yes" or inp == "y" or inp == "igen" or inp == "i":
                         print("Frissítés...")
                         repo.remotes.origin.pull("time_table")
+                        notification.notify("Notifier", "Frissítve!")
                         print("Frissítve!")
                         can_check_commands = True
                         imp.reload(notifier_libraries)
-                        imp.reload(main)
                     elif inp == "n" or inp == "no" or inp == "nem":
                         can_check_commands = True
                         stop_check_update = True
