@@ -9,7 +9,7 @@ def main():
     repo = git.Repo(".git")
     current = repo.head.commit
     print("frissítések keresése...")
-    repo.remotes.origin.pull("time_table")
+    repo.remotes.origin.pull("main")
     if current == repo.head.commit:
         print("nincsen új frissítés")
     else:

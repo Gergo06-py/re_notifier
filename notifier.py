@@ -45,9 +45,12 @@ def check_commands(code, index, this_weeks_classes, current_time):
                 notification.notify(
                     "Notifier", this_weeks_classes[index] + " órád van")
         elif inp == "!kilepes" or inp == "!kilep" or inp == "!exit":
-            print("kilépés...")
             if confirm_exit:
+                inp = "."
                 print("nyomd meg az enter gombot a kilépéshez")
+            while not inp == "":
+                pass
+            print("kilépés...")
             stop_thread = True
             get_input.join()
             exit(1)
@@ -137,15 +140,15 @@ def main():
                 notified = True
             check_commands("class", index, this_weeks_classes, current_time)
             time.sleep(1)
-    notification.notify("Notifier", "Az óráid véget értek")
+    notification.notify("Notifier", "Vége az óráidnak")
 
-
-print("indítás...")
-if __name__ == "__main__":
-    main()
-print("kilépés...")
-if confirm_exit:
-    print("nyomd meg az enter gombot a kilépéshez")
-stop_thread = True
-get_input.join()
-exit(1)
+    print("vége az óráidnak")
+    if confirm_exit:
+        inp = "."
+        print("nyomd meg az enter gombot a kilépéshez")
+    while not inp == "":
+        pass
+    print("kilépés...")
+    stop_thread = True
+    get_input.join()
+    exit(1)
