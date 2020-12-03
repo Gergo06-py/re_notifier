@@ -1,15 +1,16 @@
+# Verzió: beta 0.5
+
 from plyer import notification
 import time
 import notifier_libraries
 import threading
-import imp
 
 inp = ""
 
 confirm_exit = False
 
 
-def get_command(stop, paused):
+def run(stop, paused):
     global inp, confirm_exit
     while True:
         if stop():
@@ -19,15 +20,17 @@ def get_command(stop, paused):
             inp = input()
             confirm_exit = False
             time.sleep(0.5)
+        if stop():
+            break
 
 
-stop_get_command = False
-pause_get_command = False
-get_command = threading.Thread(target=get_command, args=(lambda: stop_get_command, lambda: pause_get_command))
+stop_thread = False
+pause_thread = True
+get_input = threading.Thread(target=run, args=(lambda: stop_thread, lambda: pause_thread))
 
 
 def check_commands(code, index, this_weeks_classes, current_time):
-    global inp, get_command, stop_get_command, confirm_exit
+    global inp, get_input, stop_thread, confirm_exit
     class_start_time = notifier_libraries.time_table[index][0].split(":")
     class_start_time = int(class_start_time[0]) * 60 + int(class_start_time[1])
     class_end_time = notifier_libraries.time_table[index][1].split(":")
@@ -45,13 +48,13 @@ def check_commands(code, index, this_weeks_classes, current_time):
             print("kilépés...")
             if confirm_exit:
                 print("nyomd meg az enter gombot a kilépéshez")
-            stop_get_command = True
-            get_command.join()
+            stop_thread = True
+            get_input.join()
             exit(1)
         elif inp == "!help" or inp == "!segitseg" or inp == "!segits" or inp == "!h":
             print("Parancsok:\n!ora\n!kilepes / !kilep / !exit\n!help / !segitseg / !segits / !h\n!kicsengo / "
-                "!kicsenget / !kicsengetes / !oraveg / !oravege / !ki-cs\n!becsengo / !becsenget / !becsengetes / "
-                "!orakezdet / !orakezdete / !be-cs")
+                  "!kicsenget / !kicsengetes / !oraveg / !oravege / !ki-cs\n!becsengo / !becsenget / !becsengetes / "
+                  "!orakezdet / !orakezdete / !be-cs\n!ver / !version / !verzio / !v\nVerzió: beta 0.5")
         elif inp == "!kicsengo" or inp == "!kicsenget" or inp == "!kicsengetes" or inp == "!oraveg" or inp == "!oravege" or inp == "!ki-cs":
             notification.notify("Notifier",
                                 str(class_end_time // 60) + ":" + str(class_end_time % 60) + "kor csengetnek ki")
@@ -80,15 +83,14 @@ def check_commands(code, index, this_weeks_classes, current_time):
 
 
 def main():
-    global inp, get_command, stop_get_command, pause_get_command
+    global inp, get_input, stop_thread, pause_thread
+    this_weeks_classes = []
+    current_week = int(time.strftime("%w"))
+    get_input.start()
+
     print(
         "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.5")
     notification.notify("Notifier", "Elindítva!")
-
-    this_weeks_classes = []
-    current_week = int(time.strftime("%w"))
-    get_command.start()
-    
 
     if 0 < current_week < 6:
         this_weeks_classes = notifier_libraries.classes[int(
@@ -97,6 +99,8 @@ def main():
         notification.notify("Notifier", "Hétvégén nicsenek óráid")
         print("kilépés...")
         exit(1)
+        
+    pause_thread = False
 
     for index in range(len(this_weeks_classes)):
         class_start_time = notifier_libraries.time_table[index][0].split(":")
@@ -135,8 +139,13 @@ def main():
             time.sleep(1)
     notification.notify("Notifier", "Az óráid véget értek")
 
-    if confirm_exit:
-        print("nyomd meg az enter gombot a kilépéshez")
-    stop_get_command = True
-    get_command.join()
-    exit(1)
+
+print("indítás...")
+if __name__ == "__main__":
+    main()
+print("kilépés...")
+if confirm_exit:
+    print("nyomd meg az enter gombot a kilépéshez")
+stop_thread = True
+get_input.join()
+exit(1)
