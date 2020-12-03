@@ -86,7 +86,6 @@ def check_commands(code, index, this_weeks_classes, current_time):
 
 def main():
     # comment
-    # another comment
     repo = git.Repo(".git")
     print(repo.untracked_files)
     current = repo.head.commit
