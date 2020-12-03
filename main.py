@@ -97,6 +97,7 @@ def main():
     repo.remotes.origin.pull("time_table")
     if current == repo.head.commit:
         notification.notify("Notifier", "Program frissítve!")
+    print("UPDATE BETA 0.4")
 
     if 0 < current_week < 6:
         this_weeks_classes = notifier_libraries.classes[int(
