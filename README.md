@@ -1,6 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js">
-    document.getElementById('p').innerHTML = moment().format('W');
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js">document.getElementById('p').innerHTML = moment().format('W');</script>
 ## This is the revamp of the notifier proiect.
 >The project was tested for
 <p id="p"></p>
