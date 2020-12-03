@@ -1,3 +1,5 @@
+# Verzió: beta 0.5
+
 from plyer import notification
 import git
 import notifier

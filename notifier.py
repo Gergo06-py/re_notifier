@@ -1,5 +1,3 @@
-# Verzió: beta 0.3
-
 from plyer import notification
 import time
 import notifier_libraries
@@ -69,7 +67,7 @@ def check_commands(code, index, this_weeks_classes, current_time):
                     notification.notify("Notifier", str(class_start_time // 60) + ":" + str(
                         class_start_time % 60) + "kor csengetnek be")
         elif inp == "!ver" or inp == "!version" or inp == "!verzio" or inp == "!v":
-            print("Verzió: beta 0.3")
+            print("Verzió: beta 0.5")
         
         elif inp == "":
             pass
@@ -84,7 +82,7 @@ def check_commands(code, index, this_weeks_classes, current_time):
 def main():
     global inp, get_command, stop_get_command, pause_get_command
     print(
-        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.3")
+        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.5")
     notification.notify("Notifier", "Elindítva!")
 
     this_weeks_classes = []
