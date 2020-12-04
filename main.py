@@ -1,5 +1,7 @@
 # Verzió: beta 0.6
 
+import notifier
+
 def main():
     notifier.main()
 
