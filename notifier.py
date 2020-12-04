@@ -1,4 +1,4 @@
-# Verzió: beta 0.5
+# Verzió: beta 0.6
 
 from plyer import notification
 import time
@@ -19,7 +19,7 @@ def run(stop, paused):
             confirm_exit = True
             inp = input()
             confirm_exit = False
-            time.sleep(0.5)
+            time.sleep(0.6)
         if stop():
             break
 
@@ -57,7 +57,7 @@ def check_commands(code, index, this_weeks_classes, current_time):
         elif inp == "!help" or inp == "!segitseg" or inp == "!segits" or inp == "!h":
             print("Parancsok:\n!ora\n!kilepes / !kilep / !exit\n!help / !segitseg / !segits / !h\n!kicsengo / "
                   "!kicsenget / !kicsengetes / !oraveg / !oravege / !ki-cs\n!becsengo / !becsenget / !becsengetes / "
-                  "!orakezdet / !orakezdete / !be-cs\n!ver / !version / !verzio / !v\nVerzió: beta 0.5")
+                  "!orakezdet / !orakezdete / !be-cs\n!ver / !version / !verzio / !v\nVerzió: beta 0.6")
         elif inp == "!kicsengo" or inp == "!kicsenget" or inp == "!kicsengetes" or inp == "!oraveg" or inp == "!oravege" or inp == "!ki-cs":
             notification.notify("Notifier",
                                 str(class_end_time // 60) + ":" + str(class_end_time % 60) + "kor csengetnek ki")
@@ -73,7 +73,7 @@ def check_commands(code, index, this_weeks_classes, current_time):
                     notification.notify("Notifier", str(class_start_time // 60) + ":" + str(
                         class_start_time % 60) + "kor csengetnek be")
         elif inp == "!ver" or inp == "!version" or inp == "!verzio" or inp == "!v":
-            print("Verzió: beta 0.5")
+            print("Verzió: beta 0.6")
         
         elif inp == "":
             pass
@@ -92,7 +92,7 @@ def main():
     get_input.start()
 
     print(
-        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.5")
+        "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.6")
     notification.notify("Notifier", "Elindítva!")
 
     if 0 < current_week < 6:
