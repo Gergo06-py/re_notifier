@@ -1,8 +1,5 @@
 # Verzió: beta 0.6
 
-from plyer import notification
-import notifier
-
 def main():
     notifier.main()
 
