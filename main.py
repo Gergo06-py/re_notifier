@@ -7,16 +7,13 @@ import shutil
 
 def update():
     try:
+        print("b1")
         g = git.Git()
-        g.clone("https://github.com/Gergo06-py/re_notifier.git", "update", branch="main")
+        g.clone("https://github.com/Gergo06-py/re_notifier.git", "../re_notifier", branch="main")
     except:
-        g = git.Git("update")
+        print("b2")
+        g = git.Git("../re_notifier")
         g.pull("https://github.com/Gergo06-py/re_notifier.git", "main")
-
-    file_names = os.listdir("update")
-    for file_name in file_names:
-        shutil.move(os.path.join("update", file_name), "")
-
 
 def main():
     print("verzió ellenőrzése...")
