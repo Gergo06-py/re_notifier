@@ -18,10 +18,8 @@ def run(stop, paused):
         if not paused():
             confirm_exit = True
             inp = input()
-            confirm_exit = False
             time.sleep(0.6)
-        if stop():
-            break
+        confirm_exit = False
 
 
 stop_thread = False
