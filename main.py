@@ -37,8 +37,19 @@ def main():
         print("új verzió elérhető:", end="")
         for line in version:
             print(" " + line, end="")
-        print("\nfrissítés...")
-        update()
+        print("\nszeretnél frissíteni?")
+        ok = False
+        while not ok:
+            inp = input()
+            if inp == "yes" or inp == "igen" or inp == "y" or inp == "i" or inp == "":
+                ok = True
+                print("frissítés...")
+                update()
+                print("frissítve!")
+            elif inp == "no" or inp == "nem" or inp == "n":
+                ok = True
+            else:
+                print("helytelen bemenet")
     elif version_num_now == version_num:
         print("nincsen frissítés!")
     elif version_num_now > version_num:
@@ -48,7 +59,9 @@ def main():
             inp = input()
             if inp == "yes" or inp == "igen" or inp == "y" or inp == "i" or inp == "":
                 ok = True
+                print("frissítés...")
                 update()
+                print("frissítve!")
             elif inp == "no" or inp == "nem" or inp == "n":
                 ok = True
             else:
