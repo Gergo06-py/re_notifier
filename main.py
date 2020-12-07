@@ -33,6 +33,8 @@ def main():
     version_now = [line.strip().split(" ") for line in raw_version_now][0]
     version_num = float(version[len(version) - 1])
     version_num_now = float(version_now[len(version_now) - 1])
+    raw_version.close()
+    raw_version_now.close()
 
     if version_num_now < version_num:
         print("új verzió elérhető:", end="")
