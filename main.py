@@ -46,9 +46,16 @@ def main():
         print("nincsen frissítés!")
     elif version_num_now > version_num:
         print("a te verzió számod nagyobb mint ami a szerveren van.\nszeretnéd lebutítani a mostani verziót?")
-        inp = input()
-        if inp == "yes" or inp == "y" or inp == "":
-            update()
+        ok = False
+        while not ok:
+            inp = input()
+            if inp == "yes" or inp == "igen" or inp == "y" or inp == "i" or inp == "":
+                ok = True
+                update()
+            elif inp == "no" or inp == "nem" or inp == "n":
+                ok = True
+            else:
+                print("helytelen bemenet")
     
     notifier.main()
 
