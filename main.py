@@ -7,11 +7,9 @@ import shutil
 
 def update():
     try:
-        print("b1")
         g = git.Git()
         g.clone("https://github.com/Gergo06-py/re_notifier.git", "../" + os.path.basename(os.getcwd()), branch="main")
     except:
-        print("b2")
         g = git.Git("../" + os.path.basename(os.getcwd()))
         g.pull("https://github.com/Gergo06-py/re_notifier.git", "main")
 
