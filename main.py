@@ -6,13 +6,9 @@ import os
 import shutil
 
 def update():
-    try:
-        g = git.Git()
-        g.clone("https://github.com/Gergo06-py/re_notifier.git", str("../" + os.path.basename(os.getcwd())), branch="main")
-    except:
-        g = git.Git(str("../" + os.path.basename(os.getcwd())))
-        g.pull("https://github.com/Gergo06-py/re_notifier.git", "main")
-
+    g = git.Git()
+    g.pull("https://github.com/Gergo06-py/re_notifier.git", "main")
+    
 def main():
     print("verzió ellenőrzése...")
     try:
