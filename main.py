@@ -6,8 +6,28 @@ import os
 import shutil
 
 def update():
-    g = git.Git()
-    g.pull("https://github.com/Gergo06-py/re_notifier.git", "main")
+    try:
+        print("p1")
+        g = git.Git()
+        g.clone("https://github.com/Gergo06-py/re_notifier.git", "update", branch="main")
+    
+        source_dir = os.path.abspath(os.getcwd()) + "\\update"
+        target_dir = os.path.abspath(os.getcwd())
+        file_names = os.listdir(source_dir)
+        for file_name in file_names:
+            shutil.move(os.path.join(source_dir, file_name), target_dir)
+    except:
+        print("p2")
+        g = git.Git("update")
+        g.pull("https://github.com/Gergo06-py/re_notifier.git", "main")
+        source_dir = os.path.abspath(os.getcwd()) + "\\update"
+        target_dir = os.path.abspath(os.getcwd())
+        file_names = os.listdir(source_dir)
+        for file_name in file_names:
+            shutil.move(os.path.join(source_dir, file_name), os.path.join(target_dir, file_name))
+
+    shutil.rmtree("update")
+    
     
 def main():
     print("verzió ellenőrzése...")
@@ -20,7 +40,7 @@ def main():
     
     raw_version = open("version/version.txt")
     version = [line.strip().split(" ") for line in raw_version][0]
-    raw_version_now = open("version_now/version_now.txt")
+    raw_version_now = open("version_now.txt")
     version_now = [line.strip().split(" ") for line in raw_version_now][0]
     version_num = float(version[len(version) - 1])
     version_num_now = float(version_now[len(version_now) - 1])
