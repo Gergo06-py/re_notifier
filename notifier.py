@@ -93,10 +93,14 @@ def main():
         "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.8")
     notification.notify("Notifier", "Elindítva!")
 
-    if 0 < current_week < 6:
+    if 0 < current_week < 7:
         this_weeks_classes = notifier_libraries.classes[int(
             current_week) - 1]
     else:
+        if current_week == -1:
+            current_week = 7
+            this_weeks_classes = notifier_libraries.classes[int(
+                current_week) - 1]
         notification.notify("Notifier", "Hétvégén nicsenek óráid")
         print("kilépés...")
         exit(1)
