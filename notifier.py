@@ -94,12 +94,12 @@ def main():
     notification.notify("Notifier", "Elindítva!")
 
     if 0 < current_week:
-        this_weeks_classes = notifier_libraries.classes[int(
-            current_week) - 1]
+        this_weeks_classes = notifier_libraries.classes[
+            current_week - 1]
     else:
         current_week = 7
-        this_weeks_classes = notifier_libraries.classes[int(
-            current_week) - 1]
+        this_weeks_classes = notifier_libraries.classes[
+            current_week - 1]
         
     pause_thread = False
     had_classes = False
