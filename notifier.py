@@ -93,19 +93,16 @@ def main():
         "elindítva!\nA ! prefix-el tudsz beírni parancsokat\nSegítségért írd be hogy !help vagy !segits vagy !segitseg\nEz a verzió még fejlesztés alatt áll. Kérlek saját felelősségre használd.\nVerzió: beta 0.8")
     notification.notify("Notifier", "Elindítva!")
 
-    if 0 < current_week < 7:
+    if 0 < current_week:
         this_weeks_classes = notifier_libraries.classes[int(
             current_week) - 1]
     else:
-        if current_week == -1:
-            current_week = 7
-            this_weeks_classes = notifier_libraries.classes[int(
-                current_week) - 1]
-        notification.notify("Notifier", "Hétvégén nicsenek óráid")
-        print("kilépés...")
-        exit(1)
+        current_week = 7
+        this_weeks_classes = notifier_libraries.classes[int(
+            current_week) - 1]
         
     pause_thread = False
+    had_classes = False
 
     for index in range(len(this_weeks_classes)):
         class_start_time = notifier_libraries.time_table[index][0].split(":")
@@ -125,6 +122,7 @@ def main():
                 current_time = time.strftime("%H:%M").split(":")
                 current_time = int(current_time[0]) * 60 + int(current_time[1])
                 notified = True
+                had_class = True
             check_commands("break", index, this_weeks_classes, current_time)
             time.sleep(1)
 
@@ -142,9 +140,13 @@ def main():
                 notified = True
             check_commands("class", index, this_weeks_classes, current_time)
             time.sleep(1)
-    notification.notify("Notifier", "Vége az óráidnak")
+    if had_classes:
+        notification.notify("Notifier", "Vége az óráidnak")
+        print("vége az óráidnak")
+    else:
+        notification.notify("Notifier", "Ma nincsenek óráid")
+        print("ma nincsenek óráid")
 
-    print("vége az óráidnak")
     if confirm_exit:
         inp = "."
         print("nyomd meg az enter gombot a kilépéshez")
