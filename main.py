@@ -1,4 +1,4 @@
-# Verzió: beta 0.8
+# Verzió: beta 0.81
 
 import notifier
 import git
